@@ -47,7 +47,7 @@ export default class CreateUserUseCase {
       .then();
 
     return {
-      error: true,
+      error: false,
       status: 201,
       msg: 'Usuário criado com sucesso. Você está sendo direcionado para realizar o login.',
       data: {},

@@ -21,6 +21,7 @@ const corsOptions = {
 };
 App.use(cors(corsOptions));
 
+
 App.use(routes);
 
 export { App, prisma };

@@ -9,7 +9,7 @@ export class UserController {
     // Verificar Schema
     const resultVerifySchema = verifySchema(req.body, userPostSchema);
     if (resultVerifySchema) {
-      return res.status(resultVerifySchema.status).json(resultVerifySchema.msg);
+      return res.status(resultVerifySchema.status).json(resultVerifySchema);
     }
 
     try {
@@ -19,10 +19,8 @@ export class UserController {
       const createUserUseCase = new CreateUserUseCase();
       const response = await createUserUseCase.execute(user);
       return res.status(response.status).json(response);
-      
     } catch (err: any) {
-      console.log(err);
-      const responseErrorInServer = errorInServer();
+      const responseErrorInServer = errorInServer(err);
       return res
         .status(responseErrorInServer.status)
         .json(responseErrorInServer);

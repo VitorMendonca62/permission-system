@@ -1,12 +1,12 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const textsUserSchemaErrors = {
   username: {
-    max: "Apelido muito longo",
-    min: "Apelido muito curto",
+    max: 'Apelido muito longo',
+    min: 'Apelido muito curto',
   },
-  email: { email: "Email inválido" },
-  password: { min: "A senha é curta demais!" },
+  email: { email: 'Email inválido' },
+  password: { min: 'A senha é curta demais!' },
 };
 
 const userSchemas = {
@@ -24,3 +24,7 @@ export const userPostSchema = z.object({
   password: userSchemas.password,
 });
 
+export const userLoginSchema = z.object({
+  email: userSchemas.email,
+  password: userSchemas.password,
+});
