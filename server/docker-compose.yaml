@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  database:
+    image: bitnami/postgresql
+    container_name: desafio-cmc
+    environment: 
+      - POSTGRESQL_DATABASE=${DB_NAME}
+      - POSTGRESQL_USERNAME=${DB_USER}
+      - POSTGRESQL_PASSWORD=${DB_PASSWORD}
+      - POSTGRESQL_POSTGRES_PASSWORD=${DB_ROOT_PASSWORD}
+    ports:
+      - "4141:5432"
+    restart: always
+    mem_limit: 256M
