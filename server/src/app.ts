@@ -2,10 +2,15 @@ import express from 'express';
 import routes from './routes';
 import prisma from './prisma/client';
 import cors from 'cors';
+import sheets from "./sheets"
+import doc from './sheets';
 
 const App = express();
 
 prisma.$connect().then(() => console.log('Database is running'));
+
+// Sheets
+doc
 
 // Accept JSONs
 App.use(express.urlencoded({ extended: true }));
