@@ -14,6 +14,7 @@ const doc = new GoogleSpreadsheet(docId, serviceAccountAuth);
 const takeSheet = async () => {
   await doc.loadInfo();
   const sheet = doc.sheetsByIndex[0];
+
   return sheet;
 };
 

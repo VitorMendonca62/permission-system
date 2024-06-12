@@ -1,4 +1,11 @@
 import { ZodError, ZodSchema } from 'zod';
+import { decode } from 'jsonwebtoken';
+import ShowUser from '../modules/user/useCases/ShowUser';
+import { Users } from '@prisma/client';
+
+interface JwtPayload {
+  id: string;
+}
 
 export function verifySchema(data: unknown, schema: ZodSchema) {
   try {
@@ -15,4 +22,14 @@ export function verifySchema(data: unknown, schema: ZodSchema) {
       };
     }
   }
+}
+
+export async function foundUserByToken(
+  token: string,
+): Promise<Users | null> {
+  const decodedToken = decode(token) as JwtPayload;
+  const id = decodedToken.id;
+  const showUser = new ShowUser();
+
+  return await showUser.verifyWithId(Number(id));
 }

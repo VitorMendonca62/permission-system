@@ -6,3 +6,13 @@ export const errorInServer = (err: any) => {
     data: err,
   };
 };
+
+export const transformInNumber = (numbers: string[]) => {
+  return numbers.map((number) => {
+    const numberOrNaN = Number(number);
+    if (!isNaN(numberOrNaN)) {
+      return numberOrNaN;
+    }
+    return NaN;
+  });
+};

@@ -42,6 +42,7 @@ export default class CreateUserUseCase {
           username: username.toLowerCase(),
           email,
           password,
+          role: "admin"
         },
       })
       .then();
