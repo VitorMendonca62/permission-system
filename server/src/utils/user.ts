@@ -24,7 +24,7 @@ export function verifySchema(data: unknown, schema: ZodSchema) {
   }
 }
 
-export async function foundUserByToken(
+export async function findUserByToken(
   token: string,
 ): Promise<Users | null> {
   const decodedToken = decode(token) as JwtPayload;

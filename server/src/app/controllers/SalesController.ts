@@ -3,7 +3,6 @@ import { salesSchemas } from '../../schemas/sale';
 import { verifySchema } from '../../utils/user';
 import { errorInServer, transformInNumber } from '../../utils/general';
 import CreateSaleUseCase from '../../modules/sales/useCases/CreateSale';
-import { decode } from 'jsonwebtoken';
 import { Role } from '@prisma/client';
 import ShowSales from '../../modules/sales/useCases/ShowSales';
 
@@ -19,7 +18,6 @@ export class SalesController {
   }
 
   public async show(req: Request, res: Response) {
-    // Verificacao se o id do cookie é o mesmo do passado
     const id = req.params.id as unknown as number;
 
     const token = req.headers.authorization as string;
@@ -51,18 +49,6 @@ export class SalesController {
     }
 
     try {
-      // Vê se o cookies bate com o user a ser criado
-      const token = req.headers.authorization as string;
-      const userDecoded = decode(token) as JwtPayload;
-
-      if (userIdString != userDecoded.id && userDecoded.role == 'user') {
-        return res.status(400).json({
-          error: true,
-          msg: 'ID do usuário não bate com ID do cookie',
-          data: {},
-        });
-      }
-
       const sale: ICreateSale = { userId, saleId, salePrice };
       const createSaleUseCase = new CreateSaleUseCase();
       const response = await createSaleUseCase.execute(sale);
