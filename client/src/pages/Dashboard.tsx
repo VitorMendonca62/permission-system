@@ -1,14 +1,15 @@
 import { useQuery } from 'react-query';
 import Table from '../components/Table';
-import { UserContext } from '../context/user';
-import { useContext, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getAllSales, getSales } from '../services/api/sale';
+import useUser from '../hooks/useUser';
+import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
   const [sales, setSales] = useState([]);
 
-  const context = useContext<IUserContext | null>(UserContext);
-  const user = context?.user;
+  const { user } = useUser();
+  const navigate = useNavigate();
 
   const { isLoading } = useQuery({
     queryKey: `getData`,
@@ -27,6 +28,12 @@ export default function Dashboard() {
       }
     },
   });
+
+  useEffect(() => {
+    if (!user.auth) {
+      return navigate('/login');
+    }
+  }, [navigate, user.auth]);
 
   if (isLoading) {
     return <h1>Loading...</h1>;

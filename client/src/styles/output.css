@@ -659,6 +659,10 @@ html {
   height: 2rem;
 }
 
+.w-10 {
+  width: 2.5rem;
+}
+
 .w-3 {
   width: 0.75rem;
 }
@@ -667,28 +671,12 @@ html {
   width: 2rem;
 }
 
-.w-\[5rem\] {
-  width: 5rem;
-}
-
-.w-full {
-  width: 100%;
-}
-
 .w-\[60\%\] {
   width: 60%;
 }
 
-.w-\[33\%\] {
-  width: 33%;
-}
-
-.w-\[20\%\] {
-  width: 20%;
-}
-
-.w-10 {
-  width: 2.5rem;
+.w-full {
+  width: 100%;
 }
 
 .max-w-sm {

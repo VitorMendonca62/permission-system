@@ -9,7 +9,6 @@ export const clearInputs = () => {
 
 export const handleErrors = (errors: FieldErrors<IUserInput>) => {
   clearInputs();
-  console.log(errors);
   for (const key in errors) {
     const brotherElement = document.querySelector(
       `form span[aria-label=${key}]`,

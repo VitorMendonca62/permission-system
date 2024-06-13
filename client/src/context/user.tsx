@@ -40,6 +40,7 @@ export default function UserProvider(props: IPropsUserContenxt) {
       }
     };
     verifyToken();
+    console.log("OI")
   }, []);
 
   const handleUpdateUser = (newUser: IUserDataContext) => {

@@ -4,17 +4,18 @@ import { userLoginSchema } from '../schemas/user';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { handleErrors } from '../utils/forms';
 import { signIn } from '../services/api/user';
-import { useContext, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Toast from '../components/Toast';
-import { UserContext } from '../context/user';
+import useUser from '../hooks/useUser';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
   const [buttonIsDisabled, setButtonIsDisabled] = useState(false);
   const [message, setMessage] = useState('');
   const [visibleMessage, setVisibleMessage] = useState(false);
 
-  const context = useContext<IUserContext | null>(UserContext);
-  const updateUser = context?.updateUser;
+  const { updateUser, user } = useUser();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -28,14 +29,21 @@ export default function SignIn() {
     handleErrors(errors);
   }
 
+  useEffect(() => {
+    if (user.auth) {
+      return navigate('/dashboard');
+    }
+  }, [navigate, user.auth]);
+
   const loginUser = async (dataForm: IUserInput) => {
-    const { msg, error, token, auth, username, id, role } = await signIn(dataForm);
+    const { msg, error, token, auth, username, id, role } = await signIn(
+      dataForm,
+    );
     setButtonIsDisabled(true);
     setMessage(msg);
     setVisibleMessage(true);
 
     localStorage.setItem('USER_TOKEN', token);
-
 
     if (!error && updateUser) {
       updateUser({
@@ -44,7 +52,7 @@ export default function SignIn() {
         isLogged: !error,
         token,
         username,
-        role
+        role,
       });
     }
 
