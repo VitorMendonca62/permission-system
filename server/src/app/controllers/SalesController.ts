@@ -18,11 +18,10 @@ export class SalesController {
   }
 
   public async show(req: Request, res: Response) {
-    const id = req.params.id as unknown as number;
+    const id = req.params.userId as unknown as number;
 
-    const token = req.headers.authorization as string;
     const showSales = new ShowSales();
-    const response = await showSales.showUserSale(Number(id), token);
+    const response = await showSales.showUserSale(Number(id));
     return res.status(response.status).json(response);
   }
 

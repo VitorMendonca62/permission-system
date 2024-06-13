@@ -16,13 +16,20 @@ const userSchemas = {
     .max(40, textsUserSchemaErrors.username.max),
   email: z.string().email(textsUserSchemaErrors.email.email),
   password: z.string().min(8, textsUserSchemaErrors.password.min),
+  confirmPassword: z.string().min(8, textsUserSchemaErrors.password.min),
 };
 
-export const userPostSchema = z.object({
-  username: userSchemas.username,
-  email: userSchemas.email,
-  password: userSchemas.password,
-});
+export const userPostSchema = z
+  .object({
+    username: userSchemas.username,
+    email: userSchemas.email,
+    password: userSchemas.password,
+    confirmPassword: userSchemas.confirmPassword,
+  })
+  .refine(({ password, confirmPassword }) => password === confirmPassword, {
+    message: 'As senhas precisam ser iguais.',
+    path: ['confirmPassword'],
+  });
 
 export const userLoginSchema = z.object({
   email: userSchemas.email,

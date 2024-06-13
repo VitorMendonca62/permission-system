@@ -21,7 +21,6 @@ export default class ShowUser {
     return userWithEmail;
   }
   async verifyWithId(id: number) {
-    console.log(typeof id,id)
     const userWithId = await prisma.users.findUnique({
       where: {
         id,

@@ -10,7 +10,7 @@ const salesController = new SalesController();
 
 routes.use(userInSaleMiddleware)
 routes.post('/', salesController.store);
-routes.get('/one/:id', salesController.show);
+routes.get('/one/:userId', salesController.show);
 
 routes.use(adminMiddleware);
 routes.get('/all', salesController.index);

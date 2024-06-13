@@ -37,11 +37,13 @@ export default class LoginUser {
 
     return {
       username: user.username,
+      id: user.id,
       auth: true,
       token,
       msg: 'Usuário logado com sucesso!',
       error: false,
       status: 201,
+      data: {},
     };
   }
 }

@@ -2,13 +2,21 @@
 
 import sheet from '../../../sheets';
 export default class ShowSales {
-  async showUserSale(idUser: number, token: string) {
+  async showUserSale(idUser: number) {
     let sales: ICreateSale[] = [];
 
     const rows = (await sheet).getRows();
 
     (await rows).forEach((row) => {
-      return row._rawData[0] == idUser ? sales.push(row._rawData) : false;
+      if (row._rawData[0] == idUser) {
+        const values = row._rawData;
+        const sale: ICreateSale = {
+          userId: values[0],
+          saleId: values[1],
+          salePrice: values[2],
+        };
+        sales.push(sale);
+      }
     });
 
     return {
@@ -21,7 +29,13 @@ export default class ShowSales {
   async showAll() {
     const rows = (await sheet).getRows();
     const sales = (await rows).map((row) => {
-      return row._rawData;
+      const values = row._rawData;
+      const sale: ICreateSale = {
+        userId: values[0],
+        saleId: values[1],
+        salePrice: values[2],
+      };
+      return sale;
     });
 
     return {

@@ -7,11 +7,11 @@ const routes = Router();
 
 const userController = new UserController();
 
-routes.use(auth);
+// routes.use(auth);
 // routes.get("/", UserController.index)
 // routes.get("/:id", UserController.show)
 
-routes.use(adminMiddleware);
+// routes.use(adminMiddleware);
 routes.post('/', userController.store);
 
 export default routes;

@@ -50,7 +50,7 @@ export default class CreateUserUseCase {
     return {
       error: false,
       status: 201,
-      msg: 'Usuário criado com sucesso. Você está sendo direcionado para realizar o login.',
+      msg: 'Usuário criado com sucesso.',
       data: {},
     };
   }

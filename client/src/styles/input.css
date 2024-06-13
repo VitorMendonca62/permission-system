@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', sans-serif;
+  }
+  .px-7\.5 {
+    padding-left: 1.9rem;
+    padding-right: 1.9rem;
+  }
+}
