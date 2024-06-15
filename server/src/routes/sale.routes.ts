@@ -12,7 +12,7 @@ routes.use(userInSaleMiddleware)
 routes.post('/', salesController.store);
 routes.get('/one/:userId', salesController.show);
 
-routes.use(adminMiddleware);
+// routes.use(adminMiddleware);
 routes.get('/all', salesController.index);
 
 export default routes;

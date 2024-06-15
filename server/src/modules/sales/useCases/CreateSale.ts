@@ -28,6 +28,7 @@ export default class CreateSaleUseCase {
         data: {},
       };
     } catch (err: any) {
+      console.log(err)
       return {
         error: true,
         status: 400,

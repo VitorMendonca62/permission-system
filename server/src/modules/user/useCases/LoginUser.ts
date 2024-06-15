@@ -39,6 +39,7 @@ export default class LoginUser {
       username: user.username,
       id: user.id,
       auth: true,
+      role: user.role,
       token,
       msg: 'Usuário logado com sucesso!',
       error: false,
