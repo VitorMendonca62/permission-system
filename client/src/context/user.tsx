@@ -29,6 +29,7 @@ export default function UserProvider(props: IPropsUserContenxt) {
       if (token) {
         const tokenDecoded = jwtDecode(token) as JwtPayload;
         const { username, id, role } = tokenDecoded;
+        console.log(tokenDecoded)
         setUser({
           auth: true,
           username,
@@ -40,7 +41,6 @@ export default function UserProvider(props: IPropsUserContenxt) {
       }
     };
     verifyToken();
-    console.log("OI")
   }, []);
 
   const handleUpdateUser = (newUser: IUserDataContext) => {

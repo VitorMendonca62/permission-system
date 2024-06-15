@@ -45,22 +45,21 @@ export default function SignIn() {
 
     localStorage.setItem('USER_TOKEN', token);
 
-    if (!error && updateUser) {
-      updateUser({
-        id,
-        auth,
-        isLogged: !error,
-        token,
-        username,
-        role,
-      });
-    }
-
     setTimeout(() => {
       if (error) {
         setButtonIsDisabled(false);
         setVisibleMessage(false);
         return;
+      }
+      if (updateUser) {
+        updateUser({
+          id,
+          auth,
+          isLogged: !error,
+          token,
+          username,
+          role,
+        });
       }
     }, 3500);
   };
@@ -95,7 +94,10 @@ export default function SignIn() {
         <button
           type="submit"
           disabled={buttonIsDisabled}
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className={`text-white bg-blue-700 ${
+            !buttonIsDisabled &&
+            'hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300'
+          }  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center disabled:opacity-30`}
         >
           Entrar
         </button>

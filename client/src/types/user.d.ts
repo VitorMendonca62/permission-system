@@ -4,6 +4,7 @@ interface IUserInput {
   password: string;
   confirmPassword: string;
 }
+type InputsUser = 'username' | 'email' | 'password' | 'confirmPassword';
 
 interface IUserLogin {
   email: string;

@@ -1,4 +1,4 @@
-type TypesInput = 'text' | 'password' | 'email';
+type TypesInput = 'text' | 'password' | 'email' | "number";
 
 interface IPropsInputForms {
   title: string;

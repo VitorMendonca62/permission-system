@@ -8,7 +8,7 @@ export default function Toast(props: IPropsToastSucess) {
   return (
     <div
       id="toast-success"
-      className={`absolute top-3 right-3 flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow  ${
+      className={`absolute z-[60] top-3 right-3 flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow  ${
         !props.visibleMessage
           ? 'transition-opacity duration-500 ease-out opacity-0'
           : 'opacity-100'
