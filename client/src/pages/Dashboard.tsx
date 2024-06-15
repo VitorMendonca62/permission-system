@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { getAllSales, getSales } from '../services/api/sale';
 import useUser from '../hooks/useUser';
 import { useNavigate } from 'react-router-dom';
-import SignUp from './SignUp';
-import AddSale from './AddSale';
+import SignUp from '../components/layout/SignUp';
+import AddSale from '../components/layout/AddSale';
 
 export default function Dashboard() {
   const [sales, setSales] = useState<ISale[] | []>([]);
@@ -13,7 +13,7 @@ export default function Dashboard() {
   const [visibleModalSales, setVisibleModalSales] = useState<boolean>(false);
 
   const navigate = useNavigate();
-  const { user, logoutUser } = useUser();
+  const { user } = useUser();
 
   const { isLoading, refetch } = useQuery({
     queryKey: `getData`,
@@ -31,6 +31,7 @@ export default function Dashboard() {
         console.log(err);
       }
     },
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {
@@ -61,31 +62,26 @@ export default function Dashboard() {
   }
 
   return (
-    <>
-      <Table sales={sales} />
-      <button
-        type="submit"
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center disabled:opacity-1"
-        onClick={handleStateModalSales}
-      >
-        Adicionar venda
-      </button>
-      {user.role === 'admin' && (
+    <div>
+      <div className="flex justify-center items-center mb-10 gap-5">
         <button
-          type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center disabled:opacity-1"
-          onClick={handleStateModalSignUp}
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-auto px-5 py-2.5 text-center disabled:opacity-1"
+          onClick={handleStateModalSales}
         >
-          Cadastrar usuário
+          Adicionar venda
         </button>
-      )}
-      <button
-        type="submit"
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center disabled:opacity-1"
-        onClick={logoutUser}
-      >
-        Sair
-      </button>
+        {user.role === 'admin' && (
+          <button
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-auto px-5 py-2.5 text-center disabled:opacity-1"
+            onClick={handleStateModalSignUp}
+          >
+            Cadastrar usuário
+          </button>
+        )}
+      </div>
+      <div className="flex justify-center items-center">
+        <Table sales={sales} />
+      </div>
 
       <SignUp
         visibleModal={visibleModalSignUp}
@@ -96,6 +92,6 @@ export default function Dashboard() {
         changeModalNotVisible={changeSalesModalNotVisible}
         refetch={refetch}
       />
-    </>
+    </div>
   );
 }

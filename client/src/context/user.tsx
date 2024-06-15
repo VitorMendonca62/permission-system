@@ -48,6 +48,7 @@ export default function UserProvider(props: IPropsUserContenxt) {
   };
 
   const handleLogout = () => {
+    console.log("oi")
     setUser({
       auth: false,
       username: 'Visitante',

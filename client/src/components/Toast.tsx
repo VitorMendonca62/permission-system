@@ -10,8 +10,8 @@ export default function Toast(props: IPropsToastSucess) {
       id="toast-success"
       className={`absolute z-[60] top-3 right-3 flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow  ${
         !props.visibleMessage
-          ? 'transition-opacity duration-500 ease-out opacity-0'
-          : 'opacity-100'
+          ? 'transition-opacity duration-500 ease-out opacity-0 translate-x-[100%]'
+          : 'opacity-100 '
       }`}
       role="alert"
     >

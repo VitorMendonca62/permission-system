@@ -1,12 +1,12 @@
-import InputForms from '../components/InputForms';
+import InputForms from '..//InputForms';
 import { useForm } from 'react-hook-form';
-import { userPostSchema } from '../schemas/user';
+import { userPostSchema } from '../../schemas/user';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { clearInputs, handleErrors } from '../utils/forms';
-import { signUP } from '../services/api/user';
+import { clearInputs, handleErrors } from '../../utils/forms';
+import { signUP } from '../../services/api/user';
 import { useState } from 'react';
-import Toast from '../components/Toast';
-import { Modal } from '../components/Modal';
+import Toast from '..//Toast';
+import { Modal } from '..//Modal';
 
 interface ISignUpProps {
   visibleModal: boolean;
@@ -49,11 +49,11 @@ export default function SignUp(props: ISignUpProps) {
         'confirmPassword',
       ];
       namesInputs.forEach((input) => setValue(input, ''));
-    }, 3500);
+    }, 2000);
   };
 
   return (
-    <div>
+    <div className='overflow-hidden'>
       <Toast
         msg={message}
         visibleMessage={visibleMessage}

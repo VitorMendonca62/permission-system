@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import InputForms from '../components/InputForms';
-import { Modal } from '../components/Modal';
-import Toast from '../components/Toast';
+import InputForms from '../InputForms';
+import { Modal } from '../Modal';
+import Toast from '../Toast';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { salesSchemas } from '../schemas/sale';
-import { clearInputs, handleErrors } from '../utils/forms';
-import { addSalesApi } from '../services/api/sale';
-import useUser from '../hooks/useUser';
+import { salesSchemas } from '../../schemas/sale';
+import { clearInputs, handleErrors } from '../../utils/forms';
+import { addSalesApi } from '../../services/api/sale';
+import useUser from '../../hooks/useUser';
 
 interface IAddSalesProps {
   visibleModal: boolean;
@@ -42,13 +42,14 @@ export default function AddSale(props: IAddSalesProps) {
   }
 
   const addSale = async (dataForm: ISale) => {
-    // dataForm.salePrice = Number(String(dataForm.salePrice).replace(',', '.'));
 
     const { msg, error } = await addSalesApi(dataForm, user.id);
     setButtonIsDisabled(true);
     setMessage(msg);
     setVisibleMessage(true);
     if (!error) {
+      console.log("OI")
+      console.log(props.refetch)
       props.refetch();
     }
 
@@ -59,11 +60,11 @@ export default function AddSale(props: IAddSalesProps) {
         const namesInputs: InputsSale[] = ['userId', 'saleId', 'salePrice'];
         namesInputs.forEach((input) => setValue(input, 0));
       }
-    }, 3500);
+    }, 2000);
   };
 
   return (
-    <div>
+    <div className="overflow-hidden">
       <Toast
         msg={message}
         visibleMessage={visibleMessage}

@@ -10,7 +10,7 @@ const App = express();
 prisma.$connect().then(() => console.log('Database is running'));
 
 // Sheets
-doc
+
 
 // Accept JSONs
 App.use(express.urlencoded({ extended: true }));

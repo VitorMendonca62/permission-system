@@ -7,7 +7,7 @@ const serviceAccountAuth = new JWT({
   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 });
 
-const docId = '1VGArNNI8r7CHYmnYMtLdJTgjvgR_lOQ65VoEJ67yCoo';
+const docId = process.env.DOCID as string;
 
 const doc = new GoogleSpreadsheet(docId, serviceAccountAuth);
 

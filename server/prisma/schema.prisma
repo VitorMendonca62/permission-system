@@ -13,7 +13,7 @@ enum Role {
 }
 
 model Users {
-  id         Int   @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   username   String   @unique
   email      String   @unique
   role       Role     @default(user)
@@ -22,4 +22,4 @@ model Users {
   updated_at DateTime @updatedAt
 
   @@map("users")
-} 
+}

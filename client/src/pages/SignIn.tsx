@@ -31,7 +31,7 @@ export default function SignIn() {
 
   useEffect(() => {
     if (user.auth) {
-      return navigate('/dashboard');
+      return navigate('/');
     }
   }, [navigate, user.auth]);
 
@@ -61,7 +61,7 @@ export default function SignIn() {
           role,
         });
       }
-    }, 3500);
+    }, 2000);
   };
 
   return (

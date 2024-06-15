@@ -20,8 +20,8 @@ export default function Table(props: IPropsTable) {
           </tr>
         </thead>
         <tbody>
-          {props.sales?.map((sale) => (
-            <tr className="bg-white border-b hover:bg-gray-50">
+          {props.sales?.map((sale, index) => (
+            <tr className="bg-white border-b hover:bg-gray-50" key={index}>
               <th scope="row" className="px-6 py-4 w-3 text-center">
                 {sale.userId}
               </th>
