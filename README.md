@@ -1,4 +1,4 @@
-# Sistema SEDUC
+# Desafio CMC
 
 ## Pré-requesitos:
 
