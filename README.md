@@ -1,5 +1,3 @@
-# Desafio CMC
-
 ## Pré-requesitos:
 
 Antes de tudo, verifique se você tem todos os softwares instalados no seu computador:
